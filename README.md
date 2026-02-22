@@ -2,7 +2,7 @@
 
 A premium, production-ready portfolio website showcasing expertise in Generative AI, Full-Stack Development, and Cinematic Web Experiences.
 
-[View Live Portfolio](https://your-portfolio-url.vercel.app)
+[View Live Portfolio](https://aadydubey.vercel.app)
 
 ## � Overview
 
