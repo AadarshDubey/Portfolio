@@ -31,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${outfit.variable} ${spaceGrotesk.variable} font-sans bg-[#050505] text-warm-100 antialiased selection:bg-accent/30 selection:text-accent-light dark:bg-[#050505] dark:text-warm-100 bg-white text-neutral-900 transition-colors duration-300`}
+        className={`${inter.variable} ${outfit.variable} ${spaceGrotesk.variable} font-sans antialiased selection:bg-accent/30 selection:text-accent-light transition-colors duration-300`}
       >
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
           <div className="fixed inset-0 z-[100] pointer-events-none">

@@ -78,7 +78,7 @@ export default function Header() {
     return (
         <header
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 will-change-transform transform-gpu ${isScrolled
-                ? "bg-[#050505]/80 backdrop-blur-md shadow-sm border-b border-warm-800/50"
+                ? "bg-white/80 dark:bg-[#050505]/80 backdrop-blur-md shadow-sm border-b border-orange-200/50 dark:border-warm-800/50"
                 : "bg-transparent"
                 }`}
         >
@@ -86,20 +86,20 @@ export default function Header() {
                 {/* Logo / Name */}
                 <a
                     href="#home"
-                    className="font-bold text-lg tracking-tight text-white hover:text-warm-200 transition-colors w-[200px]"
+                    className="font-bold text-lg tracking-tight text-orange-500 dark:text-white hover:text-orange-600 dark:hover:text-warm-200 transition-colors w-[200px]"
                 >
                     {siteConfig.name}
                 </a>
 
                 {/* Desktop Nav - Centered Pill */}
-                <div className="hidden md:flex items-center gap-1 bg-black/40 backdrop-blur-md rounded-full px-1.5 py-1.5 border border-white/5">
+                <div className="hidden md:flex items-center gap-1 bg-orange-50/80 dark:bg-black/40 backdrop-blur-md rounded-full px-1.5 py-1.5 border border-orange-200/50 dark:border-white/5">
                     {navLinks.map((link) => (
                         <a
                             key={link.href}
                             href={link.href}
                             className={`px-4 py-1.5 text-sm font-medium rounded-full transition-all duration-300 ${activeSection === link.href.slice(1)
-                                ? "bg-white/10 text-white"
-                                : "text-neutral-400 hover:text-white"
+                                ? "bg-orange-500/10 dark:bg-white/10 text-orange-600 dark:text-white"
+                                : "text-orange-400 dark:text-neutral-400 hover:text-orange-600 dark:hover:text-white"
                                 }`}
                         >
                             {link.label}
@@ -112,7 +112,7 @@ export default function Header() {
                     {mounted && (
                         <button
                             onClick={toggleTheme}
-                            className="p-2 text-neutral-400 hover:text-white transition-colors hidden md:block"
+                            className="p-2 text-orange-400 dark:text-neutral-400 hover:text-orange-600 dark:hover:text-white transition-colors hidden md:block"
                             aria-label="Toggle theme"
                         >
                             {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
@@ -121,7 +121,7 @@ export default function Header() {
 
                     {/* Mobile Toggle */}
                     <button
-                        className="md:hidden p-2 text-warm-300 hover:text-warm-50"
+                        className="md:hidden p-2 text-orange-500 dark:text-warm-300 hover:text-orange-600 dark:hover:text-warm-50"
                         onClick={() => setMobileOpen(!mobileOpen)}
                         aria-label={mobileOpen ? "Close menu" : "Open menu"}
                     >
@@ -138,7 +138,7 @@ export default function Header() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
                         transition={{ duration: 0.2 }}
-                        className="md:hidden bg-black/95 backdrop-blur-md border-b border-white/10 shadow-lg"
+                        className="md:hidden bg-white/95 dark:bg-black/95 backdrop-blur-md border-b border-orange-200/50 dark:border-white/10 shadow-lg"
                     >
                         <div className="px-4 py-4 space-y-1">
                             {navLinks.map((link) => (
@@ -147,8 +147,8 @@ export default function Header() {
                                     href={link.href}
                                     onClick={() => setMobileOpen(false)}
                                     className={`block px-4 py-2.5 text-sm rounded-lg transition-colors ${activeSection === link.href.slice(1)
-                                        ? "bg-white/10 text-white font-medium"
-                                        : "text-neutral-400 hover:text-white"
+                                        ? "bg-orange-500/10 dark:bg-white/10 text-orange-600 dark:text-white font-medium"
+                                        : "text-orange-400 dark:text-neutral-400 hover:text-orange-600 dark:hover:text-white"
                                         }`}
                                 >
                                     {link.label}
@@ -161,7 +161,7 @@ export default function Header() {
                                             toggleTheme();
                                             setMobileOpen(false);
                                         }}
-                                        className="flex items-center gap-2 px-4 py-2 text-sm text-neutral-400 hover:text-white w-full"
+                                        className="flex items-center gap-2 px-4 py-2 text-sm text-orange-400 dark:text-neutral-400 hover:text-orange-600 dark:hover:text-white w-full"
                                     >
                                         {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
                                         <span>Toggle Theme</span>
