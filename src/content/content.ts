@@ -313,7 +313,6 @@ export const experiences: Experience[] = [
             "Built a LangGraph-based RAG system integrated with Azure AI Search to retrieve and analyze LTM's financial earnings call data, improving contextual search accuracy by ~40% and reducing manual lookup time by ~60%.",
             "Developed an automated financial data ingestion pipeline using Crawl4AI to extract and structure LTI data from Yahoo Finance, processing 1000+ records per run.",
             "Engineered a Neo4j-based supervisor agent for graph-driven access control and authorization management, improving permission traceability and reducing conflicts.",
-            "Created a Search Analyzer tool that converts uploaded Markdown files into structured JSON (speaker-wise extraction using LangExtract), accelerating document processing by ~50%.",
         ],
         tech: [
             "LangGraph",
@@ -321,7 +320,6 @@ export const experiences: Experience[] = [
             "RAG",
             "Crawl4AI",
             "Neo4j",
-            "LangExtract",
         ],
     },
     {

@@ -20,6 +20,33 @@ export default function ProjectsSection() {
     const featured = projects.filter((p) => p.featured);
     const others = projects.filter((p) => !p.featured);
 
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.35, // More pronounced delay between cards
+                delayChildren: 0.1,
+            },
+        },
+    };
+
+    const cardVariants = {
+        hidden: { opacity: 0, y: 100, scale: 0.9 }, // Higher Y for "coming from bottom"
+        visible: {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            transition: {
+                type: "spring" as const,
+                stiffness: 70, // Slightly softer spring for smoother pop
+                damping: 12,
+                mass: 1
+            },
+        },
+    };
+
+
     return (
         <SectionWrapper id="projects">
             {/* Global Blur Backdrop for Spotlight Effect */}
@@ -50,15 +77,17 @@ export default function ProjectsSection() {
                 </p>
             </div>
 
-            {/* Featured Projects — Card Grid */}
-            <div className="relative z-50 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-                {featured.map((project, i) => (
+            <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }} // Triggers when cards are more visible
+                className="relative z-50 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16"
+            >
+                {featured.map((project) => (
                     <motion.div
                         key={project.id}
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: i * 0.1, duration: 0.5 }}
+                        variants={cardVariants}
                         onClick={() => setSelectedProject(project)}
                         onMouseEnter={() => setHoveredProject(project.id)}
                         onMouseLeave={() => setHoveredProject(null)}
@@ -127,20 +156,23 @@ export default function ProjectsSection() {
                         </div>
                     </motion.div>
                 ))}
-            </div>
+            </motion.div>
 
             {/* More Projects */}
             {others.length > 0 && (
                 <div className="relative z-50">
                     <h3 className="text-2xl font-bold text-accent mb-6">More Projects</h3>
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                        {others.map((project, i) => (
+                    <motion.div
+                        variants={containerVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, margin: "-80px" }}
+                        className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"
+                    >
+                        {others.map((project) => (
                             <motion.div
                                 key={project.id}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.05, duration: 0.4 }}
+                                variants={cardVariants}
                                 onMouseEnter={() => setHoveredProject(project.id)}
                                 onClick={() => setSelectedProject(project)}
                                 onMouseLeave={() => setHoveredProject(null)}
@@ -194,7 +226,7 @@ export default function ProjectsSection() {
                                 </div>
                             </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
             )}
 

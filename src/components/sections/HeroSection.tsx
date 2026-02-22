@@ -3,55 +3,11 @@
 import { siteConfig } from "@/content/content";
 import { Github, Linkedin, ArrowDown, FileDown } from "lucide-react";
 import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
 
-const ComputationalBackground = () => (
-    <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden flex items-center justify-center bg-[#050505]">
-        {/* Extremely faint, slow-moving grid */}
-        <motion.div
-            animate={{
-                backgroundPosition: ['0px 0px', '64px 64px'],
-            }}
-            transition={{
-                duration: 20,
-                ease: "linear",
-                repeat: Infinity
-            }}
-            className="absolute inset-0 opacity-[0.09]"
-            style={{
-                backgroundImage: `linear-gradient(to right, rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.5) 1px, transparent 1px)`,
-                backgroundSize: '4rem 4rem'
-            }}
-        />
-
-        {/* Soft, low-opacity drifting orbs (no sharp lines, no bright cyan) */}
-        <motion.div
-            animate={{
-                x: ['-2%', '2%', '-2%'],
-                y: ['-2%', '2%', '-2%'],
-            }}
-            transition={{ duration: 25, ease: "easeInOut", repeat: Infinity }}
-            className="absolute top-1/4 left-[20%] w-[40rem] h-[40rem] bg-white rounded-full filter blur-[120px] opacity-[0.04]"
-        />
-        <motion.div
-            animate={{
-                x: ['2%', '-2%', '2%'],
-                y: ['2%', '-2%', '2%'],
-            }}
-            transition={{ duration: 30, ease: "easeInOut", repeat: Infinity }}
-            className="absolute bottom-1/4 right-[20%] w-[35rem] h-[35rem] bg-warm-200 rounded-full filter blur-[120px] opacity-[0.03]"
-        />
-
-        {/* Subtle center pulse representing computational core */}
-        <motion.div
-            animate={{
-                opacity: [0.03, 0.05, 0.03],
-                scale: [0.95, 1.05, 0.95],
-            }}
-            transition={{ duration: 15, ease: "easeInOut", repeat: Infinity }}
-            className="absolute w-[50rem] h-[50rem] bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.8)_0%,transparent_50%)] filter blur-[80px]"
-        />
-    </div>
-);
+const LiquidDistortion = dynamic(() => import("@/components/LiquidDistortion"), {
+    ssr: false,
+});
 
 export default function HeroSection() {
     return (
@@ -59,7 +15,8 @@ export default function HeroSection() {
             id="home"
             className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden bg-[#050505]"
         >
-            <ComputationalBackground />
+            {/* Three.js liquid distortion background */}
+            <LiquidDistortion />
 
             <div className="relative z-10 flex flex-col items-center text-center max-w-4xl mx-auto pt-20">
                 <motion.div
@@ -138,6 +95,15 @@ export default function HeroSection() {
                     100% { transform: translateX(100%); }
                 }
             `}} />
+
+            {/* Bottom gradient fade: hero → black */}
+            <div
+                className="absolute bottom-0 left-0 right-0 z-10 pointer-events-none"
+                style={{
+                    height: '200px',
+                    background: 'linear-gradient(to bottom, transparent, #050505)',
+                }}
+            />
         </section>
     );
 }
