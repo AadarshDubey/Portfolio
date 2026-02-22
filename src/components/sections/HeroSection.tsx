@@ -16,7 +16,7 @@ const ComputationalBackground = () => (
                 ease: "linear",
                 repeat: Infinity
             }}
-            className="absolute inset-0 opacity-[0.04]"
+            className="absolute inset-0 opacity-[0.09]"
             style={{
                 backgroundImage: `linear-gradient(to right, rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.5) 1px, transparent 1px)`,
                 backgroundSize: '4rem 4rem'
