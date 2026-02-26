@@ -1,7 +1,7 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Database, Bot, ArrowRight, Sparkles } from "lucide-react";
+import { Search, Database, Bot, Sparkles } from "lucide-react";
 
 export function RagDemo() {
     const [step, setStep] = useState<"idle" | "searching" | "retrieving" | "generating" | "done">("idle");

@@ -1,7 +1,7 @@
 "use client";
 
 import SectionWrapper from "@/components/SectionWrapper";
-import { about, siteConfig } from "@/content/content";
+import { about } from "@/content/content";
 import { User, CheckCircle, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 

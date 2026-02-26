@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Terminal, Database as DBIcon, TableProperties } from "lucide-react";
+import { TableProperties } from "lucide-react";
 
 export function DatabaseDemo() {
     const [stage, setStage] = useState<"querying" | "results">("querying");

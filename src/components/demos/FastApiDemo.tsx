@@ -82,7 +82,7 @@ export function FastApiDemo() {
                 {/* Animated Connectors/Requests */}
                 <div className="absolute top-1/2 left-12 right-20 h-16 -translate-y-[4rem] pointer-events-none">
                     <AnimatePresence>
-                        {requests.map((id, index) => {
+                        {requests.map((id) => {
                             // Stagger start times slightly for burst effect
                             const delay = Math.random() * 0.3;
                             const yOffset = (Math.random() - 0.5) * 40; // Spread vertically

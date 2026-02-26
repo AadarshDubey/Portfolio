@@ -7,14 +7,12 @@ interface SectionWrapperProps {
     id: string;
     children: React.ReactNode;
     className?: string;
-    dark?: boolean;
 }
 
 export default function SectionWrapper({
     id,
     children,
     className = "",
-    dark = false,
 }: SectionWrapperProps) {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, margin: "-100px" });

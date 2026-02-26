@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import dynamic from "next/dynamic";
 
 // Map of components using dynamic imports for performance improvement
-const demoComponents: Record<string, React.ComponentType<any>> = {
+const demoComponents: Record<string, React.ComponentType<unknown>> = {
     WebDev: dynamic(() => import("@/components/demos/WebDevDemo").then(mod => mod.WebDevDemo), { ssr: false }),
     Api: dynamic(() => import("@/components/demos/ApiDemo").then(mod => mod.ApiDemo), { ssr: false }),
     React: dynamic(() => import("@/components/demos/ReactDemo").then(mod => mod.ReactDemo), { ssr: false }),
@@ -85,7 +85,7 @@ export default function SkillsSection() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 min-h-[500px]">
                 {/* Left Side: Skills List */}
                 <div className="lg:col-span-4 flex flex-col gap-8">
-                    {skillCategories.map((category, catIdx) => (
+                    {skillCategories.map((category) => (
                         <div key={category.title} className="flex flex-col">
                             <div className="flex items-center gap-2 mb-4 pl-1 border-b border-warm-800/30 pb-2">
                                 {category.icon}

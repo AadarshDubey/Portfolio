@@ -18,7 +18,7 @@ export function ApiDemo() {
                 setData(json);
                 setStatus("success");
             }, 800);
-        } catch (e) {
+        } catch {
             setStatus("error");
             setTimeout(() => setStatus("idle"), 2000);
         }

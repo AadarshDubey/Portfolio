@@ -8,7 +8,6 @@ import {
     Github,
     FileText,
     X,
-    ChevronRight,
     Sparkles,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";

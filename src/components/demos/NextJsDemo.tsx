@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Server, MonitorSmartphone, ArrowRight, Zap, Loader2 } from "lucide-react";
+import { Server, MonitorSmartphone, Zap, Loader2 } from "lucide-react";
 
 export function NextJsDemo() {
     const [state, setState] = useState<"idle" | "ssr" | "hydrating" | "interactive">("idle");
