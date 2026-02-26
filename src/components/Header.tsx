@@ -77,7 +77,7 @@ export default function Header() {
 
     return (
         <header
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 will-change-transform transform-gpu ${isScrolled
+            className={`fixed top-0 left-0 right-0 z-[90] transition-all duration-300 will-change-transform transform-gpu ${isScrolled
                 ? "bg-white/80 dark:bg-[#050505]/80 backdrop-blur-md shadow-sm border-b border-orange-200/50 dark:border-warm-800/50"
                 : "bg-transparent"
                 }`}
