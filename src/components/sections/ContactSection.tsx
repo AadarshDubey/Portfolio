@@ -70,7 +70,7 @@ export default function ContactSection() {
     };
 
     return (
-        <SectionWrapper id="contact" dark>
+        <SectionWrapper id="contact">
             <div className="grid lg:grid-cols-2 gap-12">
                 {/* Left: Info */}
                 <div>
