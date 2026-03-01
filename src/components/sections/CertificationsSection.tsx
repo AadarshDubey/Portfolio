@@ -30,8 +30,23 @@ export default function CertificationsSection() {
                 <span className="text-sm font-medium text-accent uppercase tracking-wider">
                     WHAT HAVE I DONE SO FAR
                 </span>
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-accent mt-2">
-                    My Certifications/Experience
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-accent mt-2 flex flex-wrap justify-center gap-x-3 overflow-hidden">
+                    <motion.span
+                        initial={{ opacity: 0, x: -120 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, margin: "-80px" }}
+                        transition={{ duration: 0.7, ease: "easeOut" }}
+                    >
+                        My
+                    </motion.span>
+                    <motion.span
+                        initial={{ opacity: 0, x: 120 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, margin: "-80px" }}
+                        transition={{ duration: 0.7, ease: "easeOut" }}
+                    >
+                        Certifications/Experience
+                    </motion.span>
                 </h2>
             </div>
 

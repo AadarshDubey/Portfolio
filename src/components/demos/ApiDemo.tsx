@@ -8,20 +8,16 @@ export function ApiDemo() {
 
     const fetchData = async () => {
         setStatus("loading");
-        try {
-            const res = await fetch("https://api.github.com/users/torvalds");
-            if (!res.ok) throw new Error("Fetch failed");
-            const json = await res.json();
-
-            // Simulate slight network delay for visual effect
-            setTimeout(() => {
-                setData(json);
-                setStatus("success");
-            }, 800);
-        } catch {
-            setStatus("error");
-            setTimeout(() => setStatus("idle"), 2000);
-        }
+        // Simulate network delay, then resolve with hardcoded profile
+        setTimeout(() => {
+            setData({
+                name: "Aadarsh Dubey",
+                login: "addy",
+                avatar_url: "/aady.png",
+                public_repos: 18,
+            });
+            setStatus("success");
+        }, 800);
     };
 
     return (
