@@ -189,15 +189,19 @@ html:not(.dark) #home span,
 html:not(.dark) #home a,
 html:not(.dark) #home div,
 html:not(.dark) #home button {
-  color: inherit;
+  color: inherit !important;
 }
 
 html:not(.dark) #home [class*="text-accent"] {
   color: #4ecdc4 !important;
 }
 
+html:not(.dark) #home .text-white {
+  color: #ffffff !important;
+}
+
 html:not(.dark) #home [class*="text-warm-"] {
-  color: inherit;
+  color: inherit !important;
 }
 
 /* ── FOOTER: Keeps dark look ─────────────────────────────────────────── */
@@ -221,7 +225,6 @@ html:not(.dark) footer [class*="text-accent"] {
 /* ── ALL SECTIONS (not hero/footer): text-white → dark text ──────────── */
 html:not(.dark) #projects h1,
 html:not(.dark) #projects h2,
-html:not(.dark) #projects h3,
 html:not(.dark) #skills h1,
 html:not(.dark) #skills h2,
 html:not(.dark) #skills h3,
@@ -243,6 +246,22 @@ html:not(.dark) #certifications h3 {
   color: #111111 !important;
 }
 
+/* Project section headings OUTSIDE cards — only the section header */
+html:not(.dark) #projects > div > div > h2,
+html:not(.dark) #projects > div > div > h3 {
+  color: #111111 !important;
+}
+
+/* Project card headings — keep white on dark cards */
+html:not(.dark) #projects .group h3,
+html:not(.dark) #projects .group h4 {
+  color: #faf8f5 !important;
+}
+html:not(.dark) #projects .group h3:hover,
+html:not(.dark) #projects .group h4:hover {
+  color: #4ecdc4 !important;
+}
+
 /* White text on non-heading elements inside sections */
 html:not(.dark) #projects .text-white,
 html:not(.dark) #skills .text-white,
@@ -251,6 +270,74 @@ html:not(.dark) #about .text-white,
 html:not(.dark) #contact .text-white,
 html:not(.dark) #achievements .text-white,
 html:not(.dark) #certifications .text-white {
+  color: #111111 !important;
+}
+
+/* ── Paragraph / body text: force dark in light mode ────────────────── */
+html:not(.dark) #skills p,
+html:not(.dark) #experience p,
+html:not(.dark) #about p,
+html:not(.dark) #contact p,
+html:not(.dark) #achievements p,
+html:not(.dark) #certifications p {
+  color: #111111 !important;
+}
+
+/* Project section description (outside cards) */
+html:not(.dark) #projects > div > div > p {
+  color: #111111 !important;
+}
+
+/* Project card text — preserve dark-theme look on dark card backgrounds */
+html:not(.dark) #projects .group p {
+  color: #d4c5b3 !important;
+}
+
+/* Project card links (Code/Demo) — keep warm look */
+html:not(.dark) #projects .group a {
+  color: #b8a48e !important;
+}
+html:not(.dark) #projects .group a:hover {
+  color: #4ecdc4 !important;
+}
+
+/* Project card warm-tone overrides — keep dark-theme values inside cards */
+html:not(.dark) #projects .group [class*="text-warm-"] {
+  color: inherit !important;
+}
+html:not(.dark) #projects .group [class*="text-\[#faf8f5\]"] {
+  color: #faf8f5 !important;
+}
+html:not(.dark) #projects .group [class*="text-\[#d4c5b3\]"] {
+  color: #d4c5b3 !important;
+}
+
+/* Project card borders — keep dark look */
+html:not(.dark) #projects .group [class*="border-warm-800"] {
+  border-color: #3d322a !important;
+}
+
+/* Project cards: keep ALL text looking like dark theme */
+html:not(.dark) #projects .group .text-white {
+  color: #ffffff !important;
+}
+html:not(.dark) #projects .group [class*="text-warm-"] {
+  color: inherit !important;
+}
+
+/* Muted warm tone classes → dark grey in light mode */
+html:not(.dark) :not(#home) .text-warm-300,
+html:not(.dark) :not(#home) .text-warm-400,
+html:not(.dark) :not(#home) .text-warm-500,
+html:not(.dark) :not(#home) .text-warm-600,
+html:not(.dark) :not(#home) .text-warm-700 {
+  color: #333333 !important;
+}
+
+/* Lightest warm tones (near-black) → proper near-black */
+html:not(.dark) :not(#home) .text-warm-50,
+html:not(.dark) :not(#home) .text-warm-100,
+html:not(.dark) :not(#home) .text-warm-200 {
   color: #111111 !important;
 }
 
@@ -277,11 +364,25 @@ html:not(.dark) #contact [class*="bg-\[#0a0a0a\]"] {
   border-color: #e0e0e0 !important;
 }
 
-/* ── Demo/Skill cards: bg-[#050505] → white ──────────────────────────── */
-html:not(.dark) #skills [class*="bg-\[#050505\]"],
-html:not(.dark) #projects [class*="bg-\[#050505\]"] {
+/* ── Demo/Skill cards: bg-[#050505] → white (except project cards) ────── */
+html:not(.dark) #skills [class*="bg-\[#050505\]"] {
   background-color: #ffffff !important;
   border-color: #e0e0e0 !important;
+}
+
+/* Project cards keep their dark background */
+html:not(.dark) #projects .group[class*="bg-\[#050505\]"] {
+  background-color: #050505 !important;
+  border-color: transparent !important;
+}
+
+/* Keep project card inner elements dark-themed in light mode */
+html:not(.dark) #projects .group [class*="bg-\[#050505\]"] {
+  background-color: #050505 !important;
+}
+html:not(.dark) #projects .group [class*="bg-warm-800"],
+html:not(.dark) #projects .group [class*="bg-warm-900"] {
+  background-color: inherit !important;
 }
 
 /* ── border-neutral-800 → light ──────────────────────────────────────── */
@@ -392,4 +493,34 @@ html:not(.dark) header [class*="bg-neutral-900"] {
 html:not(.dark) header [class*="backdrop-blur-md"]:not(header) {
   background-color: rgba(255, 255, 255, 0.9) !important;
   border-color: rgba(249, 115, 22, 0.3) !important;
+}
+
+/* ── PROJECT CARDS: Remove ALL glow/shadow in light mode ──────────────── */
+/* Kill every box-shadow on project cards by default (no hover) */
+html:not(.dark) #projects .group {
+  box-shadow: none !important;
+}
+
+/* On hover only: clean subtle elevation shadow */
+html:not(.dark) #projects .group:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10) !important;
+  border-color: #d0d0d0 !important;
+}
+
+/* Spotlight-hovered card (scale 1.03) — slightly stronger shadow */
+html:not(.dark) #projects [class*="scale-[1.03]"] {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+  border-color: #d0d0d0 !important;
+}
+
+/* Neutralize ALL cyan borders on project cards in light mode */
+html:not(.dark) #projects [class*="border-cyan"] {
+  border-color: #d0d0d0 !important;
+}
+
+/* Project card image overlay — keep dark gradient even in light mode */
+html:not(.dark) #projects .group .bg-gradient-to-t {
+  --tw-gradient-from: rgba(30, 25, 21, 0.9) !important;
+  --tw-gradient-via: rgba(30, 25, 21, 0.2) !important;
+  background-image: linear-gradient(to top, rgba(30, 25, 21, 0.9), rgba(30, 25, 21, 0.2), transparent) !important;
 }

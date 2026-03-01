@@ -32,19 +32,19 @@ export default function HeroSection() {
                                 {siteConfig.name.split(" ").slice(1).join(" ").toUpperCase()}
                             </span>
                         </h1>
-                        <p className="mt-4 text-lg sm:text-xl md:text-2xl text-warm-200 font-medium">
+                        <p className="mt-4 text-lg sm:text-xl md:text-2xl text-[#e8dfd4] font-medium">
                             {siteConfig.title}
                         </p>
                     </div>
 
-                    <p className="text-base sm:text-lg text-warm-300 max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-base sm:text-lg text-[#d4c5b3] max-w-2xl mx-auto leading-relaxed">
                         {siteConfig.tagline}
                     </p>
 
                     <div className="flex flex-wrap justify-center items-center gap-4 pt-6">
                         <a
                             href="#projects"
-                            className="group relative inline-flex items-center gap-2 px-6 py-3 bg-accent text-warm-950 font-medium text-sm rounded-lg overflow-hidden transition-all duration-300 hover:shadow-[0_0_15px_rgba(78,205,196,0.2)] hover:-translate-y-0.5"
+                            className="group relative inline-flex items-center gap-2 px-6 py-3 bg-accent text-[#0f0d0a] font-medium text-sm rounded-lg overflow-hidden transition-all duration-300 hover:shadow-[0_0_15px_rgba(78,205,196,0.2)] hover:-translate-y-0.5"
                         >
                             <span className="relative z-10 flex items-center gap-2">
                                 View Projects

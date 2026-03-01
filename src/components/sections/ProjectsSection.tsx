@@ -134,10 +134,10 @@ export default function ProjectsSection() {
 
                         {/* Card Content */}
                         <div className="p-5">
-                            <h3 className="text-lg font-bold text-warm-50 group-hover:text-accent transition-colors">
+                            <h3 className="text-lg font-bold text-[#faf8f5] group-hover:text-accent transition-colors">
                                 {project.title}
                             </h3>
-                            <p className="mt-3 text-sm text-warm-300 leading-relaxed line-clamp-5">
+                            <p className="mt-3 text-sm text-[#d4c5b3] leading-relaxed line-clamp-5">
                                 {project.description}
                             </p>
 
@@ -182,13 +182,13 @@ export default function ProjectsSection() {
                                         : "hover:border-cyan-200/50 hover:shadow-[0_0_15px_rgba(165,243,252,0.1)] z-30"
                                     }`}
                             >
-                                <h4 className="font-semibold text-warm-50 group-hover:text-accent transition-colors">
+                                <h4 className="font-semibold text-[#faf8f5] group-hover:text-accent transition-colors">
                                     {project.title}
                                 </h4>
                                 <p className="mt-1 text-xs font-medium text-accent">
                                     {project.outcome}
                                 </p>
-                                <p className="mt-2 text-sm text-warm-300 leading-relaxed line-clamp-2">
+                                <p className="mt-2 text-sm text-[#d4c5b3] leading-relaxed line-clamp-2">
                                     {project.description}
                                 </p>
                                 <div className="flex flex-wrap gap-2 mt-3">
@@ -276,10 +276,10 @@ export default function ProjectsSection() {
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: 0.2 }}
                                     >
-                                        <h3 className="text-3xl sm:text-4xl font-bold text-white mb-2">
+                                        <h3 className="text-3xl sm:text-4xl font-bold mb-2" style={{ color: '#ffffff' }}>
                                             {selectedProject.title}
                                         </h3>
-                                        <p className="text-lg font-medium text-accent/90">
+                                        <p className="text-lg font-medium" style={{ color: 'rgba(78, 205, 196, 0.9)' }}>
                                             {selectedProject.outcome}
                                         </p>
                                     </motion.div>
@@ -294,7 +294,8 @@ export default function ProjectsSection() {
                                             href={selectedProject.links.github}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="flex-1 sm:flex-none justify-center inline-flex items-center gap-2 px-6 py-3 bg-warm-900 text-white text-sm font-semibold rounded-xl hover:bg-warm-800 transition-all hover:scale-[1.02] active:scale-[0.98]"
+                                            className="flex-1 sm:flex-none justify-center inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold rounded-xl transition-all hover:scale-[1.02] active:scale-[0.98]"
+                                            style={{ backgroundColor: '#1e1915', color: '#ffffff' }}
                                         >
                                             <Github size={18} /> View Code
                                         </a>
@@ -319,7 +320,7 @@ export default function ProjectsSection() {
                                                     <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
                                                     The Problem
                                                 </h4>
-                                                <p className="text-warm-600 leading-relaxed">
+                                                <p className="leading-relaxed" style={{ color: '#7a6550' }}>
                                                     {selectedProject.problem}
                                                 </p>
                                             </div>
@@ -331,7 +332,7 @@ export default function ProjectsSection() {
                                                     <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
                                                     The Solution
                                                 </h4>
-                                                <p className="text-warm-600 leading-relaxed">
+                                                <p className="leading-relaxed" style={{ color: '#7a6550' }}>
                                                     {selectedProject.solution}
                                                 </p>
                                             </div>
@@ -347,7 +348,8 @@ export default function ProjectsSection() {
                                                     {selectedProject.features.map((f, i) => (
                                                         <li
                                                             key={i}
-                                                            className="text-sm text-warm-600 flex items-start gap-2 bg-warm-50 p-3 rounded-lg border border-warm-100"
+                                                            className="text-sm flex items-start gap-2 p-3 rounded-lg"
+                                                            style={{ color: '#7a6550', backgroundColor: '#faf8f5', borderWidth: '1px', borderColor: '#f5f0ea' }}
                                                         >
                                                             <span className="text-accent mt-0.5 shrink-0">▸</span>
                                                             {f}
@@ -367,7 +369,8 @@ export default function ProjectsSection() {
                                                 {selectedProject.stack.map((tech) => (
                                                     <span
                                                         key={tech}
-                                                        className="px-3 py-1.5 bg-warm-100 text-warm-700 text-xs font-semibold rounded-lg border border-neutral-800"
+                                                        className="px-3 py-1.5 text-xs font-semibold rounded-lg border border-neutral-800"
+                                                        style={{ backgroundColor: '#f5f0ea', color: '#5c4b3c' }}
                                                     >
                                                         {tech}
                                                     </span>
@@ -386,7 +389,7 @@ export default function ProjectsSection() {
                                                             <span className="font-bold text-accent text-lg leading-none mt-0.5">
                                                                 +
                                                             </span>
-                                                            <span className="text-sm text-warm-700 font-medium">
+                                                            <span className="text-sm font-medium" style={{ color: '#5c4b3c' }}>
                                                                 {m}
                                                             </span>
                                                         </div>
@@ -404,7 +407,8 @@ export default function ProjectsSection() {
                                                     {selectedProject.lessons.map((l, i) => (
                                                         <li
                                                             key={i}
-                                                            className="text-xs text-warm-500 italic flex items-start gap-2"
+                                                            className="text-xs italic flex items-start gap-2"
+                                                            style={{ color: '#9c836a' }}
                                                         >
                                                             <FileText size={12} className="mt-0.5 shrink-0" />
                                                             {l}
