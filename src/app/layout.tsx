@@ -3,6 +3,7 @@ import { Inter, Outfit, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "sonner";
+import { Analytics } from "@vercel/analytics/next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CustomCursor from "@/components/CustomCursor";
@@ -44,6 +45,7 @@ export default function RootLayout({
           </div>
           <Toaster position="bottom-right" theme="system" />
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
