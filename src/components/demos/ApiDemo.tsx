@@ -8,16 +8,21 @@ export function ApiDemo() {
 
     const fetchData = async () => {
         setStatus("loading");
-        // Simulate network delay, then resolve with hardcoded profile
-        setTimeout(() => {
+        try {
+            const res = await fetch("https://api.github.com/users/AadarshDubey");
+            if (!res.ok) throw new Error("Failed to fetch");
+            const data = await res.json();
             setData({
-                name: "Aadarsh Dubey",
-                login: "addy",
-                avatar_url: "/aady.png",
-                public_repos: 18,
+                name: data.name || "Aadarsh Dubey",
+                login: data.login,
+                avatar_url: data.avatar_url,
+                public_repos: data.public_repos,
             });
             setStatus("success");
-        }, 800);
+        } catch (error) {
+            console.error("Error fetching GitHub profile:", error);
+            setStatus("error");
+        }
     };
 
     return (
