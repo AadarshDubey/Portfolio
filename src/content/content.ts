@@ -119,8 +119,8 @@ export const highlights: Highlight[] = [
 // ─── Projects ─────────────────────────────────────────────────
 export const projects: Project[] = [
     {
-        id: "vibes",
-        title: "VIBES",
+        id: "recapify",
+        title: "Recapify",
         outcome: "Automated meeting analysis with structured AI-generated reports",
         description:
             "Flask-based toolkit that ingests meeting transcripts (VTT/Markdown) and video frames, sanitizes text, and uses Gemini or local Ollama models via LangGraph to extract structured insights—participants, roles, action items, technical details, and AI implementation summaries—automatically writing logs and organized output reports.",
@@ -147,7 +147,7 @@ export const projects: Project[] = [
             "Ollama",
         ],
         links: {},
-        thumbnail: "/projects/vibes.png",
+        thumbnail: "/projects/recapify.png",
         featured: true,
         metrics: [
             "Automated extraction of 7+ insight categories",
