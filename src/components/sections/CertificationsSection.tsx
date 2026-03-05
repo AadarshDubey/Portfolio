@@ -11,7 +11,8 @@ import {
     Star,
     ExternalLink,
 } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 const iconMap: Record<string, React.ReactNode> = {
     award: <Award size={20} />,
@@ -23,6 +24,20 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 export default function CertificationsSection() {
+    const containerRef = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start center", "end center"],
+    });
+
+    const springY = useSpring(scrollYProgress, {
+        stiffness: 100,
+        damping: 30,
+        restDelta: 0.001,
+    });
+
+    const cometHeight = useTransform(springY, [0, 1], ["0%", "100%"]);
+
     return (
         <SectionWrapper id="certifications">
             {/* Section Header */}
@@ -51,9 +66,18 @@ export default function CertificationsSection() {
             </div>
 
             {/* Timeline */}
-            <div className="relative">
+            <div className="relative" ref={containerRef}>
                 {/* Center Vertical Line */}
-                <div className="absolute left-4 sm:left-1/2 sm:-translate-x-px top-0 bottom-0 w-0.5 bg-warm-300" />
+                <div className="absolute left-4 sm:left-1/2 sm:-translate-x-px top-0 bottom-0 w-0.5 bg-warm-300/30">
+                    {/* The Comet Trail */}
+                    <motion.div
+                        className="absolute top-0 left-0 w-full bg-gradient-to-b from-transparent via-accent to-accent"
+                        style={{ height: cometHeight }}
+                    >
+                        {/* Glow at the tip */}
+                        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[3px] h-[30px] rounded-full bg-accent text-accent shadow-[0_0_15px_5px_currentColor]" />
+                    </motion.div>
+                </div>
 
                 <div className="space-y-12 sm:space-y-16">
                     {timelineItems.map((item, i) => {
