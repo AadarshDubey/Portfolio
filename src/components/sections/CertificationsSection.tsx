@@ -32,7 +32,7 @@ export default function CertificationsSection() {
 
     const springY = useSpring(scrollYProgress, {
         stiffness: 100,
-        damping: 30,
+        damping: 50,
         restDelta: 0.001,
     });
 

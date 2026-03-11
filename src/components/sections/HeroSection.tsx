@@ -4,6 +4,7 @@ import { siteConfig } from "@/content/content";
 import { Github, Linkedin, ArrowDown, FileDown } from "lucide-react";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
+import ShinyText from "@/components/ShinyText";
 
 const LiquidDistortion = dynamic(() => import("@/components/LiquidDistortion"), {
     ssr: false,
@@ -27,13 +28,28 @@ export default function HeroSection() {
                 >
                     <div>
                         <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white tracking-tight leading-tight">
-                            {siteConfig.name.split(" ")[0].toUpperCase()}{" "}
+                            <ShinyText 
+                                text={siteConfig.name.split(" ")[0].toUpperCase()} 
+                                speed={3} 
+                                color="#ffffff" 
+                                shineColor="#a1a1aa" 
+                            />{" "}
                             <span className="text-accent">
-                                {siteConfig.name.split(" ").slice(1).join(" ").toUpperCase()}
+                                <ShinyText 
+                                    text={siteConfig.name.split(" ").slice(1).join(" ").toUpperCase()} 
+                                    speed={3} 
+                                    color="#4ecdc4" 
+                                    shineColor="#ffffff" 
+                                />
                             </span>
                         </h1>
                         <p className="mt-4 text-lg sm:text-xl md:text-2xl text-[#e8dfd4] font-medium">
-                            {siteConfig.title}
+                            <ShinyText 
+                                text={siteConfig.title} 
+                                speed={3} 
+                                color="#e8dfd4" 
+                                shineColor="#ffffff" 
+                            />
                         </p>
                     </div>
 
