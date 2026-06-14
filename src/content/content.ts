@@ -100,7 +100,7 @@ export const siteConfig: SiteConfig = {
         "Aadarsh Dubey is a GenAI Developer specializing in building production-grade AI applications including RAG systems, intelligent agents, LLM evaluation pipelines, and scalable deployments.",
     url: "https://aadarshdubey.com",
     email: "addydubey321@gmail.com",
-    resumeUrl: "https://drive.google.com/file/d/19yGHjAKHIqNFjOcpB5j8MPGuFyGFxpuf/view?usp=drive_link",
+    resumeUrl: "https://drive.google.com/file/d/1a30Ngd677NFaQNR6WuGMWYn1WKhcZhKf/view?usp=sharing",
     social: {
         github: "https://github.com/AadarshDubey",
         linkedin: "https://www.linkedin.com/in/aadarsh-dubey-551680164/",
