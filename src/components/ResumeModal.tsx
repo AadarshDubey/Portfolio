@@ -12,6 +12,18 @@ interface ResumeModalProps {
     name?: string;
 }
 
+/**
+ * Converts a Google Drive sharing URL to an embeddable preview URL.
+ * e.g. "https://drive.google.com/file/d/FILE_ID/view?usp=sharing"
+ *    → "https://drive.google.com/file/d/FILE_ID/preview"
+ */
+function getDrivePreviewUrl(driveUrl?: string): string | null {
+    if (!driveUrl) return null;
+    const match = driveUrl.match(/\/d\/([a-zA-Z0-9_-]+)/);
+    if (!match) return null;
+    return `https://drive.google.com/file/d/${match[1]}/preview`;
+}
+
 export default function ResumeModal({
     isOpen,
     onClose,
@@ -21,6 +33,22 @@ export default function ResumeModal({
 }: ResumeModalProps) {
     const [isMaximized, setIsMaximized] = useState(false);
     const [showPdf, setShowPdf] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
+
+    // Detect mobile on mount
+    useEffect(() => {
+        const checkMobile = () => {
+            const mobile =
+                window.innerWidth < 768 ||
+                /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+                    navigator.userAgent
+                );
+            setIsMobile(mobile);
+        };
+        checkMobile();
+        window.addEventListener("resize", checkMobile);
+        return () => window.removeEventListener("resize", checkMobile);
+    }, []);
 
     // Keyboard ESC & body scroll lock
     useEffect(() => {
@@ -34,15 +62,23 @@ export default function ResumeModal({
         const prev = document.body.style.overflow;
         document.body.style.overflow = "hidden";
 
-        // Delay PDF iframe render to prevent flash/glitch
+        // Delay iframe render to prevent flash
         const timer = setTimeout(() => setShowPdf(true), 250);
 
         return () => {
+            clearTimeout(timer);
             window.removeEventListener("keydown", handleKeyDown);
             document.body.style.overflow = prev;
             setShowPdf(false);
         };
     }, [isOpen, onClose]);
+
+    // On mobile, use Google Drive preview (renders natively on Android/iOS).
+    // On desktop, use the fast local PDF.
+    const drivePreview = getDrivePreviewUrl(driveUrl);
+    const iframeSrc = isMobile && drivePreview
+        ? drivePreview
+        : `${pdfUrl}#toolbar=0&navpanes=0&scrollbar=1&view=FitH`;
 
     return (
         <AnimatePresence>
@@ -91,7 +127,7 @@ export default function ResumeModal({
                         className={`relative z-10 flex flex-col overflow-hidden transition-[border-radius] duration-300 ${
                             isMaximized
                                 ? "w-screen h-screen rounded-none"
-                                : "w-full max-w-[95vw] sm:max-w-4xl lg:max-w-5xl h-[92vh] sm:h-[88vh] rounded-2xl sm:rounded-2xl"
+                                : "w-full max-w-[95vw] sm:max-w-4xl lg:max-w-5xl h-[92vh] sm:h-[88vh] rounded-2xl"
                         }`}
                         style={{
                             transformOrigin: "bottom center",
@@ -151,7 +187,7 @@ export default function ResumeModal({
                                 <span className="text-[13px] text-zinc-400 font-medium tracking-tight">
                                     {name}
                                 </span>
-                                <span className="text-[11px] text-zinc-500">
+                                <span className="text-[11px] text-zinc-500 hidden sm:inline">
                                     — Resume.pdf
                                 </span>
                             </div>
@@ -180,8 +216,8 @@ export default function ResumeModal({
                         </div>
 
                         {/* ─── PDF Content Area ─── */}
-                        <div className="relative flex-1 w-full bg-[#1a1a1d]">
-                            {/* Loading skeleton shown while PDF iframe mounts */}
+                        <div className="relative flex-1 w-full bg-[#1a1a1d] overflow-hidden">
+                            {/* Loading spinner while iframe mounts */}
                             {!showPdf && (
                                 <div className="absolute inset-0 flex items-center justify-center">
                                     <div className="flex flex-col items-center gap-3">
@@ -199,16 +235,17 @@ export default function ResumeModal({
                                     className="w-full h-full"
                                 >
                                     <iframe
-                                        src={`${pdfUrl}#toolbar=0&navpanes=0&scrollbar=1&view=FitH`}
+                                        src={iframeSrc}
                                         title={`${name} Resume`}
                                         className="w-full h-full border-0"
                                         style={{ background: "#fff" }}
+                                        allow="autoplay"
                                     />
                                 </motion.div>
                             )}
 
-                            {/* Mobile bottom bar — always visible on small screens */}
-                            <div className="sm:hidden absolute bottom-0 left-0 right-0 flex items-center justify-between px-4 py-3 bg-gradient-to-t from-black/90 via-black/60 to-transparent">
+                            {/* Mobile bottom bar — persistent download/open on small screens */}
+                            <div className="sm:hidden absolute bottom-0 left-0 right-0 flex items-center justify-between px-4 py-3 bg-gradient-to-t from-black/90 via-black/60 to-transparent pointer-events-auto">
                                 <a
                                     href={pdfUrl}
                                     download="Aadarsh_Dubey_Resume.pdf"
