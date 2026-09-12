@@ -1,16 +1,20 @@
 "use client";
 
+import { useState } from "react";
 import { siteConfig } from "@/content/content";
-import { Github, Linkedin, ArrowDown, FileDown } from "lucide-react";
+import { Github, Linkedin, ArrowDown, FileText } from "lucide-react";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import ShinyText from "@/components/ShinyText";
+import ResumeModal from "@/components/ResumeModal";
 
 const LiquidDistortion = dynamic(() => import("@/components/LiquidDistortion"), {
     ssr: false,
 });
 
 export default function HeroSection() {
+    const [isResumeOpen, setIsResumeOpen] = useState(false);
+
     return (
         <section
             id="home"
@@ -70,15 +74,14 @@ export default function HeroSection() {
                             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] transition-all" />
                         </a>
 
-                        <a
-                            href={siteConfig.resumeUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="group inline-flex items-center gap-2 px-6 py-3 bg-[#0a0a0a]/50 backdrop-blur-sm text-white font-medium text-sm rounded-lg border border-white/10 hover:bg-[#111111] transition-all duration-300 hover:shadow-[0_0_15px_rgba(255,255,255,0.03)] hover:border-white/20 hover:-translate-y-0.5"
+                        <button
+                            type="button"
+                            onClick={() => setIsResumeOpen(true)}
+                            className="group inline-flex items-center gap-2 px-6 py-3 bg-[#0a0a0a]/50 backdrop-blur-sm text-white font-medium text-sm rounded-lg border border-white/10 hover:bg-[#111111] transition-all duration-300 hover:border-accent/40 hover:shadow-[0_0_20px_rgba(78,205,196,0.12)] hover:-translate-y-0.5 cursor-pointer"
                         >
-                            <FileDown size={16} className="transition-transform duration-300 group-hover:translate-y-1" />
-                            Resume
-                        </a>
+                            <FileText size={16} className="text-accent/80 transition-transform duration-300 group-hover:scale-110 group-hover:text-accent" />
+                            <span>Resume</span>
+                        </button>
 
                         <div className="flex items-center gap-3">
                             <a
@@ -119,6 +122,15 @@ export default function HeroSection() {
                     height: '200px',
                     background: 'linear-gradient(to bottom, transparent, #050505)',
                 }}
+            />
+
+            {/* Interactive 3D Unfolding Resume Preview Modal */}
+            <ResumeModal
+                isOpen={isResumeOpen}
+                onClose={() => setIsResumeOpen(false)}
+                pdfUrl={siteConfig.resumeUrl}
+                driveUrl={siteConfig.resumeDriveUrl}
+                name={siteConfig.name}
             />
         </section>
     );
